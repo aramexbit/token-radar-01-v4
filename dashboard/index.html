@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar v4 — walk-forward-tested blind comps model, netted farm economics, deposit-sized day-by-day plans</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <div class="eyebrow">PRE-TOKEN PROTOCOLS · FITTED IMPLIED VALUE · NETTED FARM PLANS</div>
+  <h1>TOKEN RADAR v4</h1>
+  <p class="sub">Which protocol without a token yet would be worth the most if it launched one — and what to do about it before it does. Implied values are this entry&rsquo;s own claim from the snapshot&rsquo;s figures, not a launch prediction and not a promise a token ever appears. Every farm plan is netted: expected value at the low end of the bootstrap band, minus gas, minus fees — farm, thin or skip.</p>
+  <div class="stats" id="stats">
+    <div class="stat"><span class="num" id="statBoard">—</span><span class="lbl">protocols ranked</span></div>
+    <div class="stat"><span class="num" id="statWatch">—</span><span class="lbl">watchlist covered</span></div>
+    <div class="stat"><span class="num" id="statComps">—</span><span class="lbl">live-token comps fitted</span></div>
+    <div class="stat"><span class="num" id="statTop">—</span><span class="lbl">top implied value</span></div>
+    <div class="stat"><span class="num" id="statFarm">—</span><span class="lbl">farm verdicts (of 198)</span></div>
+  </div>
+</header>
+
+<main>
+<section class="panel" id="modelPanel">
+  <h2>How the value is fitted</h2>
+  <p id="modelNote">The model fits log market cap on log TVL across live-token protocols, one line per category where the data allows it, shrunk toward the global line, and reads each pre-token protocol through its category&rsquo;s line — bent by its 7-day TVL move (×0.8–1.2) and by how long it has run with no token (×0.85–1.0), capped at 10× TVL.</p>
+  <p class="valid" id="validText">Validating…</p>
+  <p class="valid" id="walkText"></p>
+  <p class="valid" id="bootText"></p>
+  <p class="valid" id="netText"></p>
+  <table id="fitsTable" class="fits">
+    <thead><tr><th>Fit</th><th>Slope</th><th>Intercept</th><th>Comps</th><th>Median MC / TVL</th></tr></thead>
+    <tbody></tbody>
+  </table>
+  <p class="fine">Fits with fewer than 5 comps are median-ratio lines (slope 1.00), shrunk toward the global median; they are summarised in one row below. Full per-category fits live in the data file. Rows whose fit has fewer than 5 comps carry a thin-fit badge on the board.</p>
+</section>
+
+<section class="controls">
+  <input id="q" type="search" placeholder="Search a protocol…" aria-label="Search protocols">
+  <select id="chainSel" aria-label="Filter by chain"><option value="">All chains</option></select>
+  <div class="pills" role="group" aria-label="Board or live tokens">
+    <button id="modeBoard" class="pill on" type="button">Pre-token board</button>
+    <button id="modeLive" class="pill" type="button">Live tokens</button>
+  </div>
+</section>
+<div class="catpills" id="catPills"></div>
+<p class="count" id="countLine">Loading…</p>
+
+<section id="detail" class="panel detail" hidden></section>
+
+<div id="boardWrap">
+  <table id="board">
+    <thead><tr>
+      <th data-sort="rank">#</th>
+      <th data-sort="name">Protocol</th>
+      <th data-sort="cat">Category</th>
+      <th data-sort="tvl">TVL</th>
+      <th data-sort="chg">7d</th>
+      <th data-sort="days">Days unlaunched</th>
+      <th data-sort="implied">Implied value</th>
+      <th data-sort="ratio">Ratio</th>
+      <th data-sort="net">Net farm value</th>
+      <th data-sort="verdict">Verdict</th>
+      <th data-sort="plan">Farm plan</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<div id="liveWrap" hidden>
+  <table id="live">
+    <thead><tr><th>#</th><th>Protocol</th><th>Category</th><th>TVL</th><th>Market cap</th></tr></thead>
+    <tbody></tbody>
+  </table>
+</div>
+</main>
+
+<footer>
+  <p id="footNote">Snapshot: — · Data: DefiLlama protocols at or above $5M TVL. A protocol is listed as pre-token when its record carries no token; that is the record, not proof it has none.</p>
+  <p class="fine">Token Radar v4 · implied value = fitted curve value × growth × age, capped at 10× TVL · net = expected (bootstrap band low × deposit ÷ TVL) − 6 tx gas − 0.5% fees · farm plans are 8 day-by-day steps, deposit-sized by TVL tier, not slogans.</p>
+</footer>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
